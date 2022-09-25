@@ -1,0 +1,16 @@
+<app-nav-bar></app-nav-bar>
+<div class="header">
+  <h1>See all the best cats facts</h1>
+  <button id="get-cats-button" class="get-cats-button">Generate More Cat Facts</button>
+</div>
+<div class="search-bar-container">
+  <button (click)="orderByDescending()">Order by Descending</button>
+  <form [formGroup]="searchForm">
+    <label for="search" class="search-label">Search here:</label>
+    <input id="search" name="search" type="input" formControlName="search" placeholder="Type here to search...">
+  </form>
+</div>
+
+<app-cat-grid [catFacts]="catFacts" *ngIf="!isLoading"></app-cat-grid>
+<img class="loading-video" src="assets/images/nyan-cat-poptart-cat.gif" *ngIf="isLoading">
+<br>

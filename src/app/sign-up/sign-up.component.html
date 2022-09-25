@@ -1,0 +1,30 @@
+<app-nav-bar></app-nav-bar>
+<div class="form-container">
+  <form [formGroup]="catForm" class="form">
+    <div>
+      <label for="name">Name: </label>
+      <input id="name" class="input" formControlName="name">
+      <p class="warning" *ngIf="catForm.controls['name'].errors && isSubmitted">this field is required</p>
+    </div>
+    <div>
+      <label for="name">Email: </label>
+      <input id="email" class="input" formControlName="email">
+      <p class="warning" *ngIf="catForm.controls['email'].errors">Please input a valid email</p>
+    </div>
+    <div>
+      <div class="prefer-label">
+        <label for="name" >Which do you prefer?:</label>
+      </div>
+      <div class="radio-item">
+        <label for="preferred-cat">Cat:</label>
+        <input id="preferred-cat" type="radio" value="Cat" formControlName="preferred">
+      </div>
+      <div class="radio-item">
+        <label for="preferred-dog">Dog:</label>
+        <input id="preferred-dog" type="radio" value="Dog" formControlName="preferred">
+      </div>
+    </div>
+    <p class="warning" *ngIf="error">Sorry that's not the right answer</p>
+    <button type="submit" class="submit-button" [disabled]="error || catForm.controls['name'].errors || catForm.controls['email'].errors" (click)="signUp(catForm.value)">Sign Up!</button>
+  </form>
+</div>

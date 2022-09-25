@@ -1,0 +1,29 @@
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.loading-video {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.search-bar-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.search-label {
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+

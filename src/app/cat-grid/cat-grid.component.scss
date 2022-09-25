@@ -1,0 +1,49 @@
+//:root {
+//  --contentvalue: 489;
+//}
+//
+//:host ::ng-deep app-cat-grid {
+//  &:before {
+//    //content:"4";
+//    content: attr(--contentvalue);
+//    background: #941313;
+//    position: absolute;
+//    top: 0px + attr(--contentvalue);
+//    left: 22px;
+//    border-radius: 50%;
+//    height: 13px;
+//    width: 13px;
+//    border: 1px solid #ffffff;
+//    color: white;
+//    font-size: 8px;
+//    text-align: center;
+//    line-height: 13px;
+//  }
+//}
+
+$body-font-family: 'Open Sans', sans-serif;
+$base-font-size: 18px;
+$base-font-weight: 400;
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #11ffF3;
+  padding: 10px;
+  font-family:  'Open Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  text-align: center;
+}
+
+.bullet-point {
+  width: 20px;
+  height: 20px;
+}
+
