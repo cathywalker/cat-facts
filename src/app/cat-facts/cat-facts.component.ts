@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CatDataClass} from "../core/models/cat-data-class";
 import {HttpClient} from "@angular/common/http";
 import {CatApiService} from "../core/services/cat-api.service";
@@ -10,7 +10,7 @@ import {FormControl, FormGroup} from "@angular/forms";
   templateUrl: './cat-facts.component.html',
   styleUrls: ['./cat-facts.component.scss']
 })
-export class CatFactsComponent implements OnInit, OnDestroy {
+export class CatFactsComponent implements OnInit {
   public data: any = {};
   public catFacts: CatDataClass[] = [];
   public allCatFacts: CatDataClass[]= [];
@@ -31,9 +31,6 @@ export class CatFactsComponent implements OnInit, OnDestroy {
     this.getCatData();
     this.debounceButton();
     this.subscribeToSearch();
-  }
-
-  public ngOnDestroy() {
   }
 
   public getCatData() {

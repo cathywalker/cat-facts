@@ -1,27 +1,35 @@
-# CatFacts
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.3.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Cat Facts
+Scenario
+A website built in Angular using CSS or your preferred framework which displays cat facts to the user.
+This site should consist of two or more pages.
+Page 1 will have some rules which you should abide by.
+Layout
+Create a navbar which contains a logo on the far left and a title of the website on the far right. The logo and title can of your choice.
+Page 1
+• Create a cat fact array
+• Create a header and a button
+• The header and the button should be as far apart as possible, see the example below
+• When the page initialises call the API https://meowfacts.herokuapp.com?count=6
+• Transform the data from the API into an array of objects with the following data structure
+   CatId should be the current count of cats plus the index of the CatFact should be the fact from the API
+• Use a combination of RxJs operators and ES5/ES6 functions to transform the data
+• No for loops
+• Store the result into cat fact array
+• Display the cat facts in grid in HTML which are tracked by their catId
+• The grid should be its own component
+• One way data binding used for the component
+• When the button is pressed, it calls the same API as before
+      https://meowfacts.herokuapp.com?count=6
+• A link to a second page in the app
+Page 2
+• A link back to page 1
+• This can consist of any skills you want to show off. If you would rather refine page 1 then
+that’s fine.
+Bonus Points
+• Use pure CSS/SCSS or Tailwind
+• Using RxJs create a way to stop users clicking the button too many times in a brief period
+current cat
+ 
+• Create an “order by descending” button which orders the cat facts in descending order based upon their id using a pipe
+• A search box which lets users search the existing catFacts array and filters the results based upon their criteria. An empty search box should return all results
+• If invited to an interview, any knowledge on RxJs, NgRx/Redux and immutability would be beneficial
