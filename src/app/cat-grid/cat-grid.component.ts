@@ -9,6 +9,8 @@ import { CatDataClass } from "../core/models/cat-data-class";
 export class CatGridComponent {
   @Input() public catFacts: CatDataClass[] = [];
 
+  // Dumb component for cat grid
+
   constructor() {
   }
 

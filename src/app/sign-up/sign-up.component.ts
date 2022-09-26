@@ -11,6 +11,7 @@ export class SignUpComponent implements OnInit {
   public error: boolean = false;
   public isSubmitted = false;
 
+  // intialize FormGroup with FormControls
   constructor() {
     this.catForm = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -19,12 +20,14 @@ export class SignUpComponent implements OnInit {
     })
   }
 
+  // subscribe to changes in the form
   ngOnInit(): void {
     this.catForm.controls['preferred'].valueChanges.subscribe(changes => {
       changes == 'Dog'? this.error = true : this.error = false;
     });
   }
 
+  // executed on submit/sign-up button clicked
   public signUp(form: any){
     localStorage.setItem("name", form.name);
     localStorage.setItem("email", form.email);

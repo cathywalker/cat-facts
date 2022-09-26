@@ -1,7 +1,7 @@
 <app-nav-bar></app-nav-bar>
 <div class="header">
   <h1>See all the best cats facts</h1>
-  <button id="get-cats-button" class="get-cats-button">Generate More Cat Facts</button>
+  <button #getCatsButton  id="get-cats-button" class="get-cats-button">Generate More Cat Facts</button>
 </div>
 <div class="search-bar-container">
   <button (click)="orderByDescending()">Order by Descending</button>
@@ -12,5 +12,5 @@
 </div>
 
 <app-cat-grid [catFacts]="catFacts" *ngIf="!isLoading"></app-cat-grid>
-<img class="loading-video" src="assets/images/nyan-cat-poptart-cat.gif" *ngIf="isLoading">
+<img class="loading-video" src="assets/images/nyan-cat-poptart-cat.gif" alt="Nyan Cat with background animated gif" *ngIf="isLoading">
 <br>

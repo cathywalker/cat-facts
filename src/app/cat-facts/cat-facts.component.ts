@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {CatDataClass} from "../core/models/cat-data-class";
 import {HttpClient} from "@angular/common/http";
 import {CatApiService} from "../core/services/cat-api.service";
-import {debounceTime, fromEvent, tap} from "rxjs";
+import {debounceTime, fromEvent, Subscription, tap} from "rxjs";
 import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
@@ -10,21 +10,24 @@ import {FormControl, FormGroup} from "@angular/forms";
   templateUrl: './cat-facts.component.html',
   styleUrls: ['./cat-facts.component.scss']
 })
-export class CatFactsComponent implements OnInit {
+export class CatFactsComponent implements OnInit, OnDestroy {
+  @ViewChild("getCatsButton", {static:true}) public button?:ElementRef;
+
   public data: any = {};
   public catFacts: CatDataClass[] = [];
   public allCatFacts: CatDataClass[]= [];
   public currentCatCount = 0;
   public isLoading = true;
   public searchForm: FormGroup;
-  public button = document.querySelector('.get-cats-button');
 
-  private click: any;
+  private clickSubscription$: Subscription;
 
+  // initialize form and subscription
   constructor(private http: HttpClient, private catApiService: CatApiService) {
     this.searchForm = new FormGroup({
       search: new FormControl('')
-    })
+    });
+    this.clickSubscription$ = new Subscription();
   }
 
   public ngOnInit(): void {
@@ -33,6 +36,14 @@ export class CatFactsComponent implements OnInit {
     this.subscribeToSearch();
   }
 
+  // unsubscribe from button observable on destroy
+  public ngOnDestroy() {
+    this.clickSubscription$.unsubscribe();
+  }
+
+  // method that gets the cat facts from the API
+  // create observable. on successful return
+  // it calls the putCatDataInArray method
   public getCatData() {
     this.data = [];
     this.allCatFacts = [];
@@ -51,6 +62,11 @@ export class CatFactsComponent implements OnInit {
       });
   }
 
+  // called on successful return of data from API
+  // shapes the data into the CatDataClass shape
+  // fills 2 arrays one to show the user
+  // one to keep all 6 cat facts for restocking the
+  // user array on backspace in the search
   public putCatDataInArray() {
     this.catFacts = [];
 
@@ -61,15 +77,17 @@ export class CatFactsComponent implements OnInit {
     });
   }
 
+  // sort to sort the catFacts by descending catId
   public orderByDescending() {
    this.catFacts = this.catFacts.sort((a,b) => (a.catId < b.catId) ? 1 : -1);
   }
 
+  // debounce the button to call API
+  // create a subscription from RxJS fromEvent
+  // use debounceTime to add delay, and subscribe
   public debounceButton() {
-    this.button = document.querySelector('.get-cats-button');
-
     if(this.button){
-      this.click = fromEvent(this.button, 'click').pipe(
+      this.clickSubscription$ = fromEvent(this.button.nativeElement, 'click').pipe(
         debounceTime(1000),
         tap(() => {
           this.getCatData();
@@ -79,12 +97,15 @@ export class CatFactsComponent implements OnInit {
   }
 
   // Search
+  // bind to changes in the search field
   public subscribeToSearch() {
     this.searchForm.controls['search'].valueChanges.subscribe( changes => {
       this.applySearchFilter(changes);
     });
   }
 
+  // filter the catFacts array to those containing the
+  // text in the search field
   public applySearchFilter(searchValue: string) {
     this.catFacts = this.allCatFacts;
     let searchedForCatFacts: CatDataClass[];

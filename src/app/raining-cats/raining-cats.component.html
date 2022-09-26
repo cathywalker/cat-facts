@@ -1,0 +1,11 @@
+<app-nav-bar></app-nav-bar>
+<h1>It's Raining Cats <span class="line-through">And Dogs</span></h1>
+<div class="btn-container">
+  <button id="btn" type="button" (click)="addCats()">Make it Rain</button>
+</div>
+<div class="cat-container">
+  <div *ngFor="let cat of cats; index as i">
+    <img id="i" class="nyan-cat" src="assets/images/Nyan-Cat-Free-Download-PNG.png" alt="Nyan Cat">
+  </div>
+</div>
+
